@@ -5,23 +5,23 @@ test('anagrams function exists', () => {
 });
 
 test('"hello" is an anagram of "llohe"', () => {
-  expect(anagrams('hello', 'llohe')).toBeTruthy();
+  expect(anagrams('hello', 'llohe')).toEqual(true);
 });
 
 test('"Whoa! Hi!" is an anagram of "Hi! Whoa!"', () => {
-  expect(anagrams('Whoa! Hi!', 'Hi! Whoa!')).toBeTruthy();
+  expect(anagrams('Whoa! Hi!', 'Hi! Whoa!')).toEqual(true);
 });
 
 test('"One One" is not an anagram of "Two two two"', () => {
-  expect(anagrams('One One', 'Two two two')).toBeFalsy();
+  expect(anagrams('One One', 'Two two two')).toEqual(false);
 });
 
 test('"One one" is not an anagram of "One one c"', () => {
-  expect(anagrams('One one', 'One one c')).toBeFalsy();
+  expect(anagrams('One one', 'One one c')).toEqual(false);
 });
 
 test('"A tree, a life, a bench" is not an anagram of "A tree, a fence, a yard"', () => {
   expect(
     anagrams('A tree, a life, a bench', 'A tree, a fence, a yard')
-  ).toBeFalsy();
+  ).toEqual(false);
 });
