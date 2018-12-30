@@ -8,15 +8,25 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
+// helper functions
+
+// convert to lowercase
+// remove spaces and punctuation
+function normalize(str) {
+  return str.replace(/[^\w]/g, '').toLowerCase();
+}
+
+// build map of characters in string to frequency of occurance
+function buildCharMap(str) {
+  const charMap = {}
+  for (let char of str) {
+    charMap[char] = charMap[char] + 1 || 1;
+  }
+  return charMap;
+}
 
 // my first solution 
 function anagrams(stringA, stringB) {
-  // convert to lowercase
-  // remove spaces and punctuation
-  const normalize = str => {
-    return str.replace(/[^\w]/g, '').toLowerCase();
-  }
-  
   stringA = normalize(stringA);
   stringB = normalize(stringB);
 
@@ -25,32 +35,16 @@ function anagrams(stringA, stringB) {
     return false;
   }
 
-  const charMapA = {}
-  const charMapB = {}
+  const charMapA = buildCharMap(stringA);
+  const charMapB = buildCharMap(stringB);
 
-  // loop through stringA and B to build map in one loop
-  for (let i = 0; i < stringA.length; i++) {
-    if(charMapA[stringA[i]]) {
-      charMapA[stringA[i]]++
-    } else {
-      charMapA[stringA[i]] = 1;
-    }
-
-    if(charMapB[stringB[i]]) {
-      charMapB[stringB[i]]++;
-    } else {
-      charMapB[stringB[i]] = 1;
-    }
-  }
-
-  // compare charMapA and charMapB for deep equality
+  // compare charMapA and charMapB
   for (let key in charMapA) {
     if (charMapA[key] !== charMapB[key]) {
       return false;
     }
   }
   return true;
-
 }
 
 module.exports = anagrams;
