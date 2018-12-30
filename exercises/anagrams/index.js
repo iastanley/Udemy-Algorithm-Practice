@@ -26,25 +26,33 @@ function buildCharMap(str) {
 }
 
 // my first solution 
+// function anagrams(stringA, stringB) {
+//   stringA = normalize(stringA);
+//   stringB = normalize(stringB);
+
+//   // if normalized stringA is not the same length as normalized stringB not anagrams
+//   if (stringA.length !== stringB.length) {
+//     return false;
+//   }
+
+//   const charMapA = buildCharMap(stringA);
+//   const charMapB = buildCharMap(stringB);
+
+//   // compare charMapA and charMapB
+//   for (let key in charMapA) {
+//     if (charMapA[key] !== charMapB[key]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+// 2nd solution - (I prefer the first solution)
 function anagrams(stringA, stringB) {
   stringA = normalize(stringA);
   stringB = normalize(stringB);
 
-  // if normalized stringA is not the same length as normalized stringB not anagrams
-  if (stringA.length !== stringB.length) {
-    return false;
-  }
-
-  const charMapA = buildCharMap(stringA);
-  const charMapB = buildCharMap(stringB);
-
-  // compare charMapA and charMapB
-  for (let key in charMapA) {
-    if (charMapA[key] !== charMapB[key]) {
-      return false;
-    }
-  }
-  return true;
+  return stringA.split('').sort().join('') === stringB.split('').sort().join(''); 
 }
 
 module.exports = anagrams;
