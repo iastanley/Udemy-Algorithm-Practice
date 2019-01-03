@@ -39,26 +39,52 @@
 // }
 
 // recursive solution
-function steps(n, row = 1) {
-  // if the current row is greater than the total number of rows return
-  if (n < row) {
+// function steps(n, row = 1) {
+//   // if the current row is greater than the total number of rows return
+//   if (n < row) {
+//     return;
+//   }
+
+//   // build string with n number of hashes
+//   let stepString = '';
+//   for (let i = 0; i < n; i++) {
+//     // if current index is less than current row (starting at 1) add #
+//     if (i < row) {
+//       stepString += '#';
+//     } else {
+//       stepString += ' '
+//     }
+//   }
+//   console.log(stepString);
+
+//   // recursive call for next row
+//   steps(n, row + 1);
+// }
+
+// more complete recursive solution
+// this is really 2 recursive problems in 1
+  // recursion for console logging each row
+  // recusion for building a single row
+function steps(n, row = 0, stepStr = '') {
+  // assuming first row is row 0
+  // base case for entire function
+  if (n <= row) {
     return;
   }
 
-  // build string with n number of hashes
-  let stepString = '';
-  for (let i = 0; i < n; i++) {
-    // if current index is less than current row (starting at 1) add #
-    if (i < row) {
-      stepString += '#';
-    } else {
-      stepString += ' '
-    }
+  // base case for a single row
+  if (stepStr.length >= n) {
+    console.log(stepStr);
+    return steps(n, row + 1); // each time a row is finished incremeent row by 1 and start with new empty string for stepStr
   }
-  console.log(stepString);
 
-  // recursive call for next row
-  steps(n, row + 1);
+  // build the stepStr
+  if (stepStr.length <= row) {
+    stepStr += '#';
+  } else {
+    stepStr += ' ';
+  }
+  steps(n, row, stepStr); // why no return statement here?!
 }
 
 module.exports = steps;
