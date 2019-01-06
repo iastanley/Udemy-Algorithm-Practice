@@ -29,6 +29,7 @@ function matrix(n) {
   let endRow = n - 1;
 
   let counter = 1; // this is the number value for elements of matrix
+  
   while (startCol <= endCol && startRow <= endRow) {
 
     // loop for top row (start col to end col)
@@ -67,7 +68,7 @@ function matrix(n) {
     // increment start column
     startCol++;
   }
-  
+
   return finalMatrix;
 }
 
