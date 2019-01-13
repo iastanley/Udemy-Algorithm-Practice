@@ -1,4 +1,4 @@
-const fib = require('./index');
+const fib = require('./practice');
 
 test('Fib function is defined', () => {
   expect(typeof fib).toEqual('function');

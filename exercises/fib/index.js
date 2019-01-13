@@ -13,7 +13,7 @@ function fib(n) {
   if (n < 2) {
     return n;
   }
-  return fib(n - 1) + fib (n - 2); 
+  return fib(n - 1) + fib(n - 2); 
 }
 // is this exponential? O(2^n) - YES! 
 
