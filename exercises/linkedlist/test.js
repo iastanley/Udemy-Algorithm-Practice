@@ -1,5 +1,5 @@
-// const L = require('./index'); // using Node class
-const L = require('./alternative'); // representing nodes as plain objects
+const L = require('./index'); // using Node class
+// const L = require('./alternative'); // representing nodes as plain objects
 const List = L.LinkedList;
 const Node = L.Node;
 
@@ -275,7 +275,7 @@ describe('InsertAt', () => {
   });
 });
 
-describe.skip('ForEach', () => {
+describe('ForEach', () => {
   test('applies a transform to each node', () => {
     const l = new List();
 
