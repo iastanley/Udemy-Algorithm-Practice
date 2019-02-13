@@ -25,3 +25,7 @@ test('levelWidth returns number of nodes at widest point', () => {
 
   expect(levelWidth(root)).toEqual([1, 1, 2, 1]);
 });
+
+test('levelWidth returns number of nodes when root is null', () => {
+  expect(levelWidth(null)).toEqual([0]);
+});
