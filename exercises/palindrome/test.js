@@ -1,11 +1,11 @@
-const palindrome = require('./index');
+const palindrome = require('./index2');
 
 test('palindrome function is defined', () => {
   expect(typeof palindrome).toEqual('function');
 });
 
-test('"aba" is a palindrome', () => {
-  expect(palindrome('aba')).toBeTruthy();
+test('"abba" is a palindrome', () => {
+  expect(palindrome('abba')).toBeTruthy();
 });
 
 test('" aba" is not a palindrome', () => {
