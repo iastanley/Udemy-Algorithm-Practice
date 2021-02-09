@@ -1,5 +1,4 @@
-const L = require('./index'); // using Node class
-// const L = require('./alternative'); // representing nodes as plain objects
+const L = require('./index2');
 const List = L.LinkedList;
 const Node = L.Node;
 
@@ -7,11 +6,11 @@ test('List is a class', () => {
   expect(typeof List.prototype.constructor).toEqual('function');
 });
 
-test.skip('Node is a class', () => {
+test('Node is a class', () => {
   expect(typeof Node.prototype.constructor).toEqual('function');
 });
 
-describe.skip('A Node', () => {
+describe('A Node', () => {
   test('has properties "data" and "next"', () => {
     const node = new Node('a', 'b');
     expect(node.data).toEqual('a');
@@ -19,7 +18,7 @@ describe.skip('A Node', () => {
   });
 });
 
-describe('Insert First', () => {
+describe.skip('Insert First', () => {
   test('appends a node to the start of the list', () => {
     const l = new List();
     l.insertFirst(1);
@@ -31,7 +30,7 @@ describe('Insert First', () => {
   });
 });
 
-describe('Size', () => {
+describe.skip('Size', () => {
   test('returns the number of items in the linked list', () => {
     const l = new List();
     expect(l.size()).toEqual(0);
@@ -43,7 +42,7 @@ describe('Size', () => {
   });
 });
 
-describe('GetFirst', () => {
+describe.skip('GetFirst', () => {
   test('returns the first element', () => {
     const l = new List();
     l.insertFirst(1);
@@ -53,7 +52,7 @@ describe('GetFirst', () => {
   });
 });
 
-describe('GetLast', () => {
+describe.skip('GetLast', () => {
   test('returns the last element', () => {
     const l = new List();
     l.insertFirst(2);
@@ -63,7 +62,7 @@ describe('GetLast', () => {
   });
 });
 
-describe('Clear', () => {
+describe.skip('Clear', () => {
   test('empties out the list', () => {
     const l = new List();
     expect(l.size()).toEqual(0);
@@ -77,7 +76,7 @@ describe('Clear', () => {
   });
 });
 
-describe('RemoveFirst', () => {
+describe.skip('RemoveFirst', () => {
   test('removes the first node when the list has a size of one', () => {
     const l = new List();
     l.insertFirst('a');
@@ -100,7 +99,7 @@ describe('RemoveFirst', () => {
   });
 });
 
-describe('RemoveLast', () => {
+describe.skip('RemoveLast', () => {
   test('RemoveLast removes the last node when list is empty', () => {
     const l = new List();
     expect(() => {
@@ -138,7 +137,7 @@ describe('RemoveLast', () => {
   });
 });
 
-describe('InsertLast', () => {
+describe.skip('InsertLast', () => {
   test('adds to the end of the list', () => {
     const l = new List();
     l.insertFirst('a');
@@ -150,7 +149,7 @@ describe('InsertLast', () => {
   });
 });
 
-describe('GetAt', () => {
+describe.skip('GetAt', () => {
   test('returns the node at given index', () => {
     const l = new List();
     expect(l.getAt(10)).toEqual(null);
@@ -167,7 +166,7 @@ describe('GetAt', () => {
   });
 });
 
-describe('RemoveAt', () => {
+describe.skip('RemoveAt', () => {
   test('removeAt doesnt crash on an empty list', () => {
     const l = new List();
     expect(() => {
@@ -220,7 +219,7 @@ describe('RemoveAt', () => {
   });
 });
 
-describe('InsertAt', () => {
+describe.skip('InsertAt', () => {
   test('inserts a new node with data at the 0 index when the list is empty', () => {
     const l = new List();
     l.insertAt('hi', 0);
@@ -275,7 +274,7 @@ describe('InsertAt', () => {
   });
 });
 
-describe('ForEach', () => {
+describe.skip('ForEach', () => {
   test('applies a transform to each node', () => {
     const l = new List();
 
@@ -322,3 +321,79 @@ describe.skip('for...of loops', () => {
     }).not.toThrow();
   });
 });
+
+describe('constructor for linked list', () => {
+  test('create empty linked list with no arguments', () => {
+    const l = new List();
+    expect(l.head).toEqual(null);
+  });
+
+  test('create a linked list with head initialized to node with argument data', () => {
+    const l = new List(1);
+    expect(l.head.data).toEqual(1);
+    expect(l.head.next).toEqual(null);
+  });
+});
+
+
+// MY OWN CUSTOM IMPLEMENTATION OF LINKED LIST
+describe('push', () => {
+  test('adds new node to empty list', () => {
+    const l = new List();
+    l.push('a');
+    expect(l.head.data).toEqual('a');
+    expect(l.head.next).toEqual(null);
+  });
+
+  test('adds new node to a list with more than one node already existing', () => {
+    const l = new List(0);
+    l.push(1);
+    expect(l.head.next.data).toEqual(1);
+    expect(l.head.next.next).toEqual(null);
+    l.push(2);
+    expect(l.head.next.next.data).toEqual(2);
+  });
+})
+
+describe('getLength', () => {
+  test('finds length of empty list', () => {
+    const l = new List();
+    expect(l.getLength()).toEqual(0);
+  });
+
+  test('finds length of linked list with 1 node', () => {
+    const l = new List(1);
+    expect(l.getLength()).toEqual(1);
+
+    const l2 = new List();
+    l2.push(1);
+    expect(l.getLength()).toEqual(1);
+  })
+
+  test('finds length of linked list with > 1 node', () => {
+    const l = new List();
+    l.push(0);
+    l.push(1);
+    l.push(2);
+    expect(l.getLength()).toEqual(3);
+  });
+});
+
+
+describe('getAt', () => {
+  test('returns null when indexing empty list', () => {
+    const l = new List();
+    expect(l.getAt(0)).toEqual(null);
+  });
+
+  test('returns value from list at correct index', () => {
+    const l = new List('a');
+    expect(l.getAt(0)).toEqual('a');
+
+    l.push('b');
+    l.push('c');
+    l.push('d');
+    expect(l.getAt(2)).toEqual('c');
+    expect(l.getAt(3)).toEqual('d');
+  });
+})

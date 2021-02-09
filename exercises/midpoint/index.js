@@ -12,6 +12,20 @@
 //   l.insertLast('c')
 //   midpoint(l); // returns { data: 'b' }
 
-function midpoint(list) {}
+function midpoint(list) {
+  // get the head
+  const head = list.getFirst();
+  if(!head) {
+    return null;
+  }
+  // set slow and fast to reference the head;
+  let slow = head;
+  let fast = head;
+  while(fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  return slow;
+}
 
 module.exports = midpoint;
